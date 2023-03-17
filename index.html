@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Password Generator</title>
+
+        <!-- My CSS -->
+        <link rel="stylesheet" href="style.css">
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    </head>
+    <body>
+        <div class="container">
+            <h1 class="header-text">Password Generator</h1>
+
+            <div class="password-copy-section">
+                <input id="pwd-textbox" class="password-textbox" placeholder="Password" readonly>
+                <button id="copy-pwd-btn" class="copy-password-btn">
+                    <i class="fa-solid fa-copy"></i>
+                </button>
+            </div>
+
+            <div class="password-main-creator">
+                <div class="password-length">
+                    <span class="password-length-txt">Password Length</span>
+                    <span id="pwd-length-num" class="password-length-num"></span>
+                </div>
+
+                <input class="slider" id="slider" type="range" min="1" max="20" step="1" text-slider>
+
+                <div class="check-boxes">
+                    <div class="checkbox">
+                        <input id="pwd-lowercase" type="checkbox"> <label>Include Lowercase Letters</label>
+                    </div>
+                    <div class="checkbox">
+                        <input id="pwd-uppercase" type="checkbox"> <label>Include Uppercase Letters</label>
+                    </div>
+                    <div class="checkbox">
+                        <input id="pwd-number" type="checkbox"> <label>Include Number</label>
+                    </div>
+                    <div class="checkbox">
+                        <input id="pwd-symbol" type="checkbox"> <label>Include Symbols</label>
+                    </div>
+                </div>
+
+                <div class="strength-display">
+                    <span class="strength-txt">Strength</span>
+                    <span id="pwd-strength-num" class="strength-num"></span>
+                </div>
+
+                <div class="submit-btn-section">
+                    <button id="submit-btn" class="submit-btn">
+                        Generate <span id="submit-btn-question-mark" class="question-mark question-active">❔</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- My Script -->
+        <script src="script.js"></script>
+    </body>
+</html>
