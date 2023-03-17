@@ -3,6 +3,9 @@
 let pwdTextbox = document.getElementById('pwd-textbox')
 let pwdCopyBtn = document.getElementById('copy-pwd-btn')
 
+//! Copy Password -> msg
+let copyMsg = document.querySelector('.copy-msg')
+
 //! Password-creation-section
 let pwdLength = document.getElementById('pwd-length-num')
 let pwdSlider = document.getElementById('slider')
@@ -24,6 +27,7 @@ let min = pwdSlider.getAttribute('min')
 let max = pwdSlider.getAttribute('max')
 
 let passwordLength = 1
+let pwdSuccessful  = false
 
 let checkedBoxes = 0
 let tempStrengthColor = '#C5C5C5'
@@ -59,18 +63,42 @@ function main() {
     submitBtn.addEventListener('click', function() {
         if(tempStrengthColor != '#C5C5C5') {
             submitBtnMain()
+            pwdSuccessful = true
         }
         else {  
             pwdTextbox.removeAttribute('value')
+            pwdSuccessful = false
         }
 
         console.log(checkedBoxes)
     })
 
-    // setInterval(makeSlideChanges, 1000)
+    pwdCopyBtn.addEventListener('click', copyMessage)
 }
 
-main()
+async function copyMessage() {
+    if(pwdSuccessful) 
+    {
+        try {
+            await navigator.clipboard.writeText(pwdTextbox.value)
+            copyMsg.textContent = "Text Copied"
+        }
+        catch {
+            copyMsg.textContent = "Failed"
+        }
+    }
+    else
+    {
+        copyMsg.textContent = "No Content"
+    }
+    copyMsg.classList.add('copy-active')
+    
+    if(copyMsg.classList.contains('copy-active')) {
+        setTimeout(function() {
+            copyMsg.classList.remove('copy-active')
+        }, 1000)
+    }
+}
 
 function makeSlideChanges() {
     if(pwdSlider.value < checkedBoxes) {
@@ -87,7 +115,7 @@ function randomGenerator(lower, upper) {
 }
 
 function getRandomNumber() {
-    return randomGenerator(0, 10)
+    return randomGenerator(0, 9)
 }
 
 function getRandomLowercase() {
@@ -178,10 +206,12 @@ function submitBtnMain() {
 
     for(let i = 0; i < len; i++)
     {
-        let index = getRandomNumber(0, passwordLength)
+        let index = randomGenerator(0, passwordLength)
         password += collection[index]
     }
 
     pwdTextbox.defaultValue = password
 }
+
+main()          //! Main Function call
 

@@ -14,6 +14,7 @@
     --input-box-color: hsl(268, 75%, 9%);
     --shadow: hsl(314, 89%, 26%);
     --indicator-grey: #C5C5C5;
+    --vb-cyan: hsl(177, 92%, 70%);
 }
 
 html {
@@ -54,7 +55,7 @@ body {
     height: 3rem;
     width: 100%;
 
-    /* position: relative; */
+    position: relative;
     
     background-color: var(--input-box-color);
 
@@ -114,6 +115,49 @@ body {
 
 .copy-password-btn:hover {
     font-size: x-large;
+}
+
+.copy-msg {
+    height: 1.5rem;
+    width: 6.2rem ;
+    color: var(--shadow);
+    background-color: var(--vb-cyan);
+
+    position: absolute;
+    display: inline-block;
+
+    opacity: 0;   
+    transform: translateX(2rem) translateY(-1.2rem);
+    transform-origin: bottom;
+    transition-delay: 0.1s;
+    transition: opacity 0.2s ease-in-out;
+
+    border-radius: 1rem;
+    text-align: center;
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 0.1785rem 0 0 0;
+}
+
+.copy-active {
+    opacity: 1;
+}
+
+@media (max-width: 450px) {
+    .copy-password-btn {
+        margin-right: 8px;
+    }
+    .copy-password-btn:hover {
+        font-size: x-large;
+    }
+    .copy-msg {
+        opacity: 0;
+        transform: translateX(-5px) translateY(-1rem);
+        transition: opacity 0.2s ease-in-out;
+    }
+    .copy-active {
+        opacity: 1;
+    }
 }
 
 .password-main-creator {
